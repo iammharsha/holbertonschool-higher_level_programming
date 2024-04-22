@@ -4,7 +4,7 @@ def search_replace(my_list, search, replace):
     return new_list
 
 
-def check_and_replace(x, search, replace):
-    if x == search:
-        return replace
+def check_and_replace(x, s, r):
+    if x == s:
+        return r
     return x
