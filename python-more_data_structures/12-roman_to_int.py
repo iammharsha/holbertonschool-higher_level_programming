@@ -4,7 +4,7 @@ def roman_to_int(roman_string):
     ans = 0
     prev_value = 0
     
-    if roman_string is None or isinstance(roman_string, str):
+    if roman_string is None or not isinstance(roman_string, str):
         return ans
 
     for char in reversed(roman_string):
