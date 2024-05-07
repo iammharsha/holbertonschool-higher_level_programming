@@ -5,10 +5,10 @@
 class Square:
     """
     Definition of class Square
-   
+    
     Args:
         size (int): Size of Square
-
+    
     """
 
     __size = 0
