@@ -4,7 +4,7 @@
 
 class Square:
     """
-    Definition of class Square    
+    Definition of class Square
     Args:
         size (int): Size of Square
     """
