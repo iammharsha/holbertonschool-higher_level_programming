@@ -1,0 +1,61 @@
+# Test cases for class MyList
+
+# Import MyList class from mylist module
+>>> MyList = __import__('1-my_list').MyList
+
+# Create a MyList object with unsorted integers
+>>> my_list = MyList([3, 1, 2])
+
+# Call print_sorted method to sort and print the list
+>>> my_list.print_sorted()
+[1, 2, 3]
+
+# Create a MyList object with unsorted integers
+>>> my_list = MyList([5, 4, 9, 1])
+
+# Call the print_sorted method to sort and print the list
+>>> my_list.print_sorted()
+[1, 4, 5, 9]
+
+# Create a MyList object with a single integer
+>>> my_list = MyList([1])
+
+# Call the print_sorted method to print the single-element list
+>>> my_list.print_sorted()
+[1]
+
+# Create a MyList object with an empty list
+>>> my_list = MyList([])
+
+# Call the print_sorted method to print the empty list
+>>> my_list.print_sorted()
+[]
+
+# Check the string representation of the list
+>>> str(my_list)
+'[]'
+
+# Append a new integer to the list
+>>> my_list.append(4)
+
+# Check the list after appending
+>>> my_list.print_sorted()
+[4]
+
+# Create a MyList object with unsorted integers
+>>> my_list = MyList([3, 1, 2])
+
+# Call the print_sorted() method to get the sorted list
+>>> sorted_list = my_list.print_sorted()
+[1, 2, 3]
+
+# Check if the original list remains unchanged
+>>> my_list
+[3, 1, 2]
+
+# Create a MyList object with unsorted integers including negative numbers
+>>> my_list = MyList([3, 1, -2, -4])
+
+# Call the print_sorted() method to get the sorted list
+>>> sorted_list = my_list.print_sorted()
+[-4, -2, 1, 3]
