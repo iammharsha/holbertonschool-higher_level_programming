@@ -16,15 +16,19 @@ class Student:
         self.last_name = last_name
         self.age = age
 
-    def to_json(self):
+    def to_json(self, attrs=None):
         """
         Function to retrieve document representation of Student instance
 
         Returns:
             dict: Document representation of Student instance
         """
-        return {
-            'first_name': self.first_name,
-            'last_name': self.last_name,
-            'age': self.age
-        }
+        if attrs is None:
+            return self.__dict__
+
+        json_dict = {}
+        for attr in attrs:
+            if hasattr(self, attr):
+                json_dict[attr] = getattr(self, attr)
+
+        return json_dict
