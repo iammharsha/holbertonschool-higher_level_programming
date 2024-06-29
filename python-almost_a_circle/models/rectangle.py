@@ -24,7 +24,7 @@ class Rectangle(Base):
             id (int): Identifier for class
         """
         super().__init__(id)
- 
+
         if not isinstance(width, int):
             raise TypeError("width must be an integer")
         if width <= 0:
@@ -144,3 +144,12 @@ class Rectangle(Base):
         if value < 0:
             raise ValueError("y must be >= 0")
         self.__y = value
+
+    def area(self):
+        """
+        Function to calculate Area of Rectangle
+
+        Returns:
+            int: Area of Rectangle
+        """
+        return self.__width * self.__height
