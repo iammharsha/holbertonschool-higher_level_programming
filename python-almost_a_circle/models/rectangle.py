@@ -158,3 +158,14 @@ class Rectangle(Base):
         """Function to Print Rectangle using #"""
         for _ in range(self.__height):
             print('#' * self.__width)
+
+    def __str__(self):
+        """
+        Function to return Rectangle representation in fromat
+        [Rectangle] (<id>) <x>/<y> - <width>/<height>
+
+        Returns:
+            string: Returns string representation of class
+        """
+        return (f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - "
+                f"{self.__width}/{self.__height}")
