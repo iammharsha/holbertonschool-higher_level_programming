@@ -170,3 +170,16 @@ class Rectangle(Base):
         """
         return (f"[Rectangle] ({self.id}) {self.__x}/{self.__y} - "
                 f"{self.__width}/{self.__height}")
+
+    def update(self, *args):
+        """
+        Function to update the attributes of object of Class Rectangle
+
+        Args:
+            args: No-keyword argument containing attributes value in order
+                    id, width, height, x, y
+        """
+        attributes = ['id', 'width', 'height', 'x', 'y']
+        for i, value in enumerate(args):
+            if i < len(attributes):
+                setattr(self, attributes[i], value)
