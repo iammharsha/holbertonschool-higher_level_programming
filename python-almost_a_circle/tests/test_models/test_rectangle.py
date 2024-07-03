@@ -2,6 +2,8 @@
 """Unit test for Rectangle"""
 import unittest
 from models.rectangle import Rectangle
+from io import StringIO
+import sys
 
 
 class TestRectangle(unittest.TestCase):
@@ -57,6 +59,21 @@ class TestRectangle(unittest.TestCase):
         r1 = Rectangle(10, 20)
         r1_area = r1.area()
         self.assertEqual(r1_area, 200)
+
+    def test_display(self):
+        r1 = Rectangle(4, 6)
+        captured_output = StringIO()
+        sys.stdout = captured_output
+        r1.display()
+        sys.stdout = sys.__stdout__
+        self.assertEqual(captured_output.getvalue(), "####\n####\n####\n####\n####\n####\n")
+
+        r2 = Rectangle(2, 3, 1, 1)
+        captured_output = StringIO()
+        sys.stdout = captured_output
+        r2.display()
+        sys.stdout = sys.__stdout__
+        self.assertEqual(captured_output.getvalue(), "\n ##\n ##\n ##\n")
 
 if __name__ == '__main__':
     unittest.main()
