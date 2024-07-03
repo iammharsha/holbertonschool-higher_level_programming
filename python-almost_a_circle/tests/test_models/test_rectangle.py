@@ -118,5 +118,42 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r1.x, 5)
         self.assertEqual(r1.y, 7)
 
+    def test_update_kwargs(self):
+        r1 = Rectangle(2, 3)
+        r1.update(id=10)
+        self.assertEqual(r1.id, 10)
+        self.assertEqual(r1.width, 2)
+        self.assertEqual(r1.height, 3)
+        self.assertEqual(r1.x, 0)
+        self.assertEqual(r1.y, 0)
+
+        r1.update(id=10, width=15)
+        self.assertEqual(r1.id, 10)
+        self.assertEqual(r1.width, 15)
+        self.assertEqual(r1.height, 3)
+        self.assertEqual(r1.x, 0)
+        self.assertEqual(r1.y, 0)
+
+        r1.update(id=10, width=15, height=2)
+        self.assertEqual(r1.id, 10)
+        self.assertEqual(r1.width, 15)
+        self.assertEqual(r1.height, 2)
+        self.assertEqual(r1.x, 0)
+        self.assertEqual(r1.y, 0)
+
+        r1.update(id=10, width=15, height=2, x=5)
+        self.assertEqual(r1.id, 10)
+        self.assertEqual(r1.width, 15)
+        self.assertEqual(r1.height, 2)
+        self.assertEqual(r1.x, 5)
+        self.assertEqual(r1.y, 0)
+
+        r1.update(id=10, width=15, height=2, x=5, y=7)
+        self.assertEqual(r1.id, 10)
+        self.assertEqual(r1.width, 15)
+        self.assertEqual(r1.height, 2)
+        self.assertEqual(r1.x, 5)
+        self.assertEqual(r1.y, 7)
+
 if __name__ == '__main__':
     unittest.main()
