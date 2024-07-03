@@ -155,5 +155,10 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r1.x, 5)
         self.assertEqual(r1.y, 7)
 
+    def test_to_dictionary(self):
+        r1 = Rectangle(10, 2, 1, 9, 1)
+        r1_dictionary = r1.to_dictionary()
+        self.assertEqual(r1_dictionary, {'x': 1, 'y': 9, 'id': 1, 'height': 2, 'width': 10})
+
 if __name__ == '__main__':
     unittest.main()
