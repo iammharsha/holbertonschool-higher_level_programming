@@ -77,5 +77,55 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(str(self.s3), "[Square] (3) 2/1 - 4")
         self.assertEqual(str(self.s4), "[Square] (15) 1/1 - 5")
 
+    def test_update_args(self):
+        self.s1.update(5)
+        self.assertEqual(self.s1.id, 5)
+        self.assertEqual(self.s1.size, 2)
+        self.assertEqual(self.s1.x, 0)
+        self.assertEqual(self.s1.y, 0)
+
+        self.s1.update(5, 3)
+        self.assertEqual(self.s1.id, 5)
+        self.assertEqual(self.s1.size, 3)
+        self.assertEqual(self.s1.x, 0)
+        self.assertEqual(self.s1.y, 0)
+
+        self.s1.update(5, 3, 6)
+        self.assertEqual(self.s1.id, 5)
+        self.assertEqual(self.s1.size, 3)
+        self.assertEqual(self.s1.x, 6)
+        self.assertEqual(self.s1.y, 0)
+
+        self.s1.update(5, 8, 6, 10)
+        self.assertEqual(self.s1.id, 5)
+        self.assertEqual(self.s1.size, 8)
+        self.assertEqual(self.s1.x, 6)
+        self.assertEqual(self.s1.y, 10)
+
+    def test_update_kwargs(self):
+        self.s1.update(id=8)
+        self.assertEqual(self.s1.id, 8)
+        self.assertEqual(self.s1.size, 2)
+        self.assertEqual(self.s1.x, 0)
+        self.assertEqual(self.s1.y, 0)
+
+        self.s1.update(id=8, size=32)
+        self.assertEqual(self.s1.id, 8)
+        self.assertEqual(self.s1.size, 32)
+        self.assertEqual(self.s1.x, 0)
+        self.assertEqual(self.s1.y, 0)
+
+        self.s1.update(id=8, size=32, x=56)
+        self.assertEqual(self.s1.id, 8)
+        self.assertEqual(self.s1.size, 32)
+        self.assertEqual(self.s1.x, 56)
+        self.assertEqual(self.s1.y, 0)
+
+        self.s1.update(id=8, size=32, x=56, y=28)
+        self.assertEqual(self.s1.id, 8)
+        self.assertEqual(self.s1.size, 32)
+        self.assertEqual(self.s1.x, 56)
+        self.assertEqual(self.s1.y, 28)
+
 if __name__ == '__main__':
     unittest.main()
