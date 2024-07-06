@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 """Unit test for Rectangle"""
 import unittest
-from models.base import Base
-from models.rectangle import Rectangle
+import json
 from io import StringIO
 import sys
+from models.base import Base
+from models.rectangle import Rectangle
 
 
 class TestRectangle(unittest.TestCase):
@@ -160,6 +161,14 @@ class TestRectangle(unittest.TestCase):
         r1 = Rectangle(10, 2, 1, 9, 1)
         r1_dictionary = r1.to_dictionary()
         self.assertEqual(r1_dictionary, {'x': 1, 'y': 9, 'id': 1, 'height': 2, 'width': 10})
+
+    def test_to_json_string(self):
+        r1 = Rectangle(10, 2, 1, 9, 1)
+        r2 = Rectangle(5, 4)
+        dict_list = [r1.to_dictionary(), r2.to_dictionary()]
+        json_string = Base.to_json_string(dict_list)
+        expected_string = json.dumps(dict_list)
+        self.assertEqual(json_string, expected_string)
 
 if __name__ == '__main__':
     unittest.main()

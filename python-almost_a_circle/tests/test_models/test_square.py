@@ -1,10 +1,12 @@
 #!/usr/bin/python3
 """Unit test for class Square"""
 import unittest
+import json
+import sys
+from io import StringIO
 from models.base import Base
 from models.square import Square
-from io import StringIO
-import sys
+
 
 class TestSquare(unittest.TestCase):
     """
@@ -130,6 +132,12 @@ class TestSquare(unittest.TestCase):
     def test_to_dictionary(self):
         s4_dictionary = self.s4.to_dictionary()
         self.assertEqual(s4_dictionary, {'x': 1, 'y': 1, 'id': 15, 'size': 5})
+
+    def test_to_json_string(self):
+        dict_list = [self.s1.to_dictionary(), self.s4.to_dictionary()]
+        json_string = Base.to_json_string(dict_list)
+        expected_json = json.dumps(dict_list)
+        self.assertEqual(json_string, expected_json)
 
 if __name__ == '__main__':
     unittest.main()
