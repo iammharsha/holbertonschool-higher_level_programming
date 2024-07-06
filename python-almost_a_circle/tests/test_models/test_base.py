@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Unit test for Base Class"""
 import unittest
+import json
 from models.base import Base
 
 
@@ -43,6 +44,24 @@ class TestBase(unittest.TestCase):
         self.assertEqual(b3.id, 2)
         b4 = Base(24)
         self.assertEqual(b4.id, 24)
+
+    def test_to_json_string_none(self):
+        """Test to_json_string with None."""
+        self.assertEqual(Base.to_json_string(None), "[]")
+
+    def test_to_json_string_empty(self):
+        """Test to_json_string with an empty list."""
+        self.assertEqual(Base.to_json_string([]), "[]")
+
+    def test_to_json_string_valid(self):
+        """Test to_json_string with a valid list of dictionaries."""
+        dict_list = [
+            {'id': 1},
+            {'id': 2}
+        ]
+        json_str = Base.to_json_string(dict_list)
+        expected_str = json.dumps(dict_list)
+        self.assertEqual(json_str, expected_str)
 
 if __name__ == '__main__':
     unittest.main()
