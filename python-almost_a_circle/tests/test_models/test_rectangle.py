@@ -2,6 +2,7 @@
 """Unit test for Rectangle"""
 import unittest
 import json
+import os
 from io import StringIO
 import sys
 from models.base import Base
@@ -15,6 +16,12 @@ class TestRectangle(unittest.TestCase):
 
     def setUp(self):
         Base._Base__nb_objects = 0
+
+    def tearDown(self):
+        try:
+            os.remove("Rectangle.json")
+        except FileNotFoundError:
+            pass
 
     def test_initialization(self):
         r1 = Rectangle(10, 20)
@@ -169,6 +176,25 @@ class TestRectangle(unittest.TestCase):
         json_string = Base.to_json_string(dict_list)
         expected_string = json.dumps(dict_list)
         self.assertEqual(json_string, expected_string)
+
+    def test_save_to_file_none(self):
+        Rectangle.save_to_file(None)
+        with open("Rectangle.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
+
+    def test_save_to_file_empty(self):
+        Rectangle.save_to_file([])
+        with open("Rectangle.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
+
+    def test_save_to_file_valid(self):
+        r1 = Rectangle(10, 7, 2, 8, 1)
+        r2 = Rectangle(2, 4, 0, 0, 2)
+        Rectangle.save_to_file([r1, r2])
+        with open("Rectangle.json", "r") as file:
+            content = file.read()
+            list_dicts = [r1.to_dictionary(), r2.to_dictionary()]
+            self.assertEqual(content, json.dumps(list_dicts))
 
 if __name__ == '__main__':
     unittest.main()

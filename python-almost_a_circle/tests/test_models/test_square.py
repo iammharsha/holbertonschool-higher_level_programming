@@ -3,6 +3,7 @@
 import unittest
 import json
 import sys
+import os
 from io import StringIO
 from models.base import Base
 from models.square import Square
@@ -19,6 +20,12 @@ class TestSquare(unittest.TestCase):
         self.s2 = Square(3, 1)
         self.s3 = Square(4, 2, 1)
         self.s4 = Square(5, 1, 1, 15)
+
+    def tearDown(self):
+        try:
+            os.remove("Square.json")
+        except FileNotFoundError:
+            pass
 
     def test_initialization(self):
         self.assertEqual(self.s1.size, 2)
@@ -138,6 +145,23 @@ class TestSquare(unittest.TestCase):
         json_string = Base.to_json_string(dict_list)
         expected_json = json.dumps(dict_list)
         self.assertEqual(json_string, expected_json)
+
+    def test_save_to_file_none(self):
+        Square.save_to_file(None)
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
+
+    def test_save_to_file_empty(self):
+        Square.save_to_file([])
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
+
+    def test_save_to_file_valid(self):
+        Square.save_to_file([self.s1, self.s3])
+        with open("Square.json", "r") as file:
+            content = file.read()
+            list_dicts = [self.s1.to_dictionary(), self.s3.to_dictionary()]
+            self.assertEqual(content, json.dumps(list_dicts))
 
 if __name__ == '__main__':
     unittest.main()
