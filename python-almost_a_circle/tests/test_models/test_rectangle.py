@@ -196,5 +196,46 @@ class TestRectangle(unittest.TestCase):
             list_dicts = [r1.to_dictionary(), r2.to_dictionary()]
             self.assertEqual(content, json.dumps(list_dicts))
 
+    def test_create_rectangle(self):
+        r1_dict = {"id": 1}
+        r1_rect = Rectangle.create(**r1_dict)
+        self.assertEqual(r1_rect.id, 1)
+        self.assertEqual(r1_rect.width, 1)
+        self.assertEqual(r1_rect.height, 1)
+        self.assertEqual(r1_rect.x, 0)
+        self.assertEqual(r1_rect.y, 0)
+
+        r2_dict = {"id": 1, "width": 5}
+        r2_rect = Rectangle.create(**r2_dict)
+        self.assertEqual(r2_rect.id, 1)
+        self.assertEqual(r2_rect.width, 5)
+        self.assertEqual(r2_rect.height, 1)
+        self.assertEqual(r2_rect.x, 0)
+        self.assertEqual(r2_rect.y, 0)
+
+        r3_dict = {"id": 1, "width": 5, "height": 3}
+        r3_rect = Rectangle.create(**r3_dict)
+        self.assertEqual(r3_rect.id, 1)
+        self.assertEqual(r3_rect.width, 5)
+        self.assertEqual(r3_rect.height, 3)
+        self.assertEqual(r3_rect.x, 0)
+        self.assertEqual(r3_rect.y, 0)
+
+        r4_dict = {"id": 1, "width": 5, "height": 3, "x": 4}
+        r4_rect = Rectangle.create(**r4_dict)
+        self.assertEqual(r4_rect.id, 1)
+        self.assertEqual(r4_rect.width, 5)
+        self.assertEqual(r4_rect.height, 3)
+        self.assertEqual(r4_rect.x, 4)
+        self.assertEqual(r4_rect.y, 0)
+
+        r5_dict = {"id": 1, "width": 5, "height": 3, "x": 4, "y": 7}
+        r5_rect = Rectangle.create(**r5_dict)
+        self.assertEqual(r5_rect.id, 1)
+        self.assertEqual(r5_rect.width, 5)
+        self.assertEqual(r5_rect.height, 3)
+        self.assertEqual(r5_rect.x, 4)
+        self.assertEqual(r5_rect.y, 7)
+
 if __name__ == '__main__':
     unittest.main()
