@@ -63,5 +63,22 @@ class TestBase(unittest.TestCase):
         expected_str = json.dumps(dict_list)
         self.assertEqual(json_str, expected_str)
 
+    def test_from_json_string_none(self):
+        """Test from_json_string with None."""
+        self.assertEqual(Base.from_json_string(None), [])
+
+    def test_from_json_string_empty(self):
+        """Test from_json_string with an empty string."""
+        self.assertEqual(Base.from_json_string(""), [])
+
+    def test_from_json_string_valid(self):
+        """Test from_json_string with a valid JSON string."""
+        json_string = '[{"id": 1}, {"id": 2}]'
+        expected_output = [
+            {"id": 1},
+            {"id": 2}
+        ]
+        self.assertEqual(Base.from_json_string(json_string), expected_output)
+
 if __name__ == '__main__':
     unittest.main()
