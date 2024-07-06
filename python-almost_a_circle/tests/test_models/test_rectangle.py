@@ -237,5 +237,29 @@ class TestRectangle(unittest.TestCase):
         self.assertEqual(r5_rect.x, 4)
         self.assertEqual(r5_rect.y, 7)
 
+    def test_load_from_file_no_file(self):
+        try:
+            os.remove("Rectangle.json")
+        except FileNotFoundError:
+            pass
+        r1 = Rectangle.load_from_file()
+        self.assertEqual(r1, [])
+
+    def test_load_from_file_exists(self):
+        r1 = Rectangle(10, 5, 0, 1, 12)
+        r2 = Rectangle(3, 4)
+        Rectangle.save_to_file([r1, r2])
+        
+        rectangles = Rectangle.load_from_file()
+        self.assertEqual(len(rectangles), 2)
+        self.assertEqual(rectangles[0].width, 10)
+        self.assertEqual(rectangles[0].height, 5)
+        self.assertEqual(rectangles[0].x, 0)
+        self.assertEqual(rectangles[0].y, 1)
+        self.assertEqual(rectangles[1].width, 3)
+        self.assertEqual(rectangles[1].height, 4)
+        self.assertEqual(rectangles[1].x, 0)
+        self.assertEqual(rectangles[1].y, 0)
+
 if __name__ == '__main__':
     unittest.main()
