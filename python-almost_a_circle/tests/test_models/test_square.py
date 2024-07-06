@@ -192,5 +192,25 @@ class TestSquare(unittest.TestCase):
         self.assertEqual(s4_obj.x, 2)
         self.assertEqual(s4_obj.y, 7)
 
+    def test_load_from_file_no_file(self):
+        try:
+            os.remove("Square.json")
+        except FileNotFoundError:
+            pass
+        squares = Square.load_from_file()
+        self.assertEqual(squares, [])
+
+    def test_load_from_file_exists(self):
+        Square.save_to_file([self.s2, self.s3])
+
+        squares = Square.load_from_file()
+        self.assertEqual(len(squares), 2)
+        self.assertEqual(squares[0].size, 3)
+        self.assertEqual(squares[0].x, 1)
+        self.assertEqual(squares[0].y, 0)
+        self.assertEqual(squares[1].size, 4)
+        self.assertEqual(squares[1].x, 2)
+        self.assertEqual(squares[1].y, 1)
+
 if __name__ == '__main__':
     unittest.main()
