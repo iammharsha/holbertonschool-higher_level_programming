@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Unit test for Rectangle"""
 import unittest
+from models.base import Base
 from models.rectangle import Rectangle
 from io import StringIO
 import sys
@@ -9,10 +10,10 @@ import sys
 class TestRectangle(unittest.TestCase):
     """
     TestRectangle class contains unit tests for the Rectangle class
-
-    Methods:
-        setUp(self): Resets the class attribute __nb_objects before each test.
     """
+
+    def setUp(self):
+        Base._Base__nb_objects = 0
 
     def test_initialization(self):
         r1 = Rectangle(10, 20)
