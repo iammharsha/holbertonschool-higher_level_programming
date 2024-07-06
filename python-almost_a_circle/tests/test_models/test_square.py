@@ -163,5 +163,34 @@ class TestSquare(unittest.TestCase):
             list_dicts = [self.s1.to_dictionary(), self.s3.to_dictionary()]
             self.assertEqual(content, json.dumps(list_dicts))
 
+    def test_create_square(self):
+        s1_dict = {"id": 19}
+        s1_obj = Square.create(**s1_dict)
+        self.assertEqual(s1_obj.id, 19)
+        self.assertEqual(s1_obj.size, 1)
+        self.assertEqual(s1_obj.x, 0)
+        self.assertEqual(s1_obj.y, 0)
+
+        s2_dict = {"id": 19, "size": 4}
+        s2_obj = Square.create(**s2_dict)
+        self.assertEqual(s2_obj.id, 19)
+        self.assertEqual(s2_obj.size, 4)
+        self.assertEqual(s2_obj.x, 0)
+        self.assertEqual(s2_obj.y, 0)
+
+        s3_dict = {"id": 19, "size": 4, "x": 2}
+        s3_obj = Square.create(**s3_dict)
+        self.assertEqual(s3_obj.id, 19)
+        self.assertEqual(s3_obj.size, 4)
+        self.assertEqual(s3_obj.x, 2)
+        self.assertEqual(s3_obj.y, 0)
+
+        s4_dict = {"id": 19, "size": 4, "x": 2, "y": 7}
+        s4_obj = Square.create(**s4_dict)
+        self.assertEqual(s4_obj.id, 19)
+        self.assertEqual(s4_obj.size, 4)
+        self.assertEqual(s4_obj.x, 2)
+        self.assertEqual(s4_obj.y, 7)
+
 if __name__ == '__main__':
     unittest.main()
