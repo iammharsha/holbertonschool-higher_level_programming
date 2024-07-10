@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""Module to list all states in db hbtn_0e_6_usa"""
+"""Module to list first state in db hbtn_0e_6_usa"""
 import sys
 from model_state import Base, State
 from sqlalchemy import create_engine
@@ -16,7 +16,9 @@ if __name__ == "__main__":
     Session = sessionmaker(bind=engine)
     session = Session()
 
-    for instance in session.query(State).order_by(State.id):
-        print("{}: {}".format(instance.id, instance.name))
-
+    state = session.query(State).order_by(State.id).first()
+    if state:
+        print("{}: {}".format(state.id, state.name))
+    else:
+        print("Nothing")
     session.close()
