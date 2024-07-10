@@ -20,7 +20,7 @@ if __name__ == "__main__":
         )
     cur = conn.cursor()
     cur.execute("""
-            SELECT c.id, c.name, s.name
+            SELECT c.name
             FROM cities c
             INNER JOIN states s
             ON s.id = c.state_id
@@ -28,7 +28,8 @@ if __name__ == "__main__":
             ORDER BY c.id ASC
             """, (state,))
     query_rows = cur.fetchall()
-    for row in query_rows:
-        print(row)
+    cities_list = [row[0] for row in query_rows]
+    cities = ', '.join(cities_list)
+    print(cities)
     cur.close()
     conn.close()
